@@ -1,0 +1,4 @@
+<!-- <p>people works!</p> -->
+@for (actor of people; track actor.id) {
+<app-person-card [person]="actor"></app-person-card>
+}
