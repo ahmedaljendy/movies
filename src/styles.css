@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+#p-card,
+#t-card,
+#g-card {
+  transition: transform 0.3s ease; /* Smooth animation */
+}
+
+#p-card:hover,
+#t-card:hover,
+#g-card:hover {
+  transform: scale(1.05); /* Make the card 5% bigger on hover */
+}

@@ -1,4 +1,12 @@
 <!-- <p>tv works!</p> -->
-@for (tv of tvs; track tv.id) {
-<app-tv-card [tv]="tv"></app-tv-card>
-}
+<div class="container">
+  <div class="row g-3 justify-content-center">
+    @for (tv of tvs; track tv.id) {
+    <div
+      class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center"
+    >
+      <app-tv-card [tv]="tv"></app-tv-card>
+    </div>
+    }
+  </div>
+</div>
