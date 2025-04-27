@@ -1,9 +1,10 @@
 import { Component, input } from '@angular/core';
 import { PeopleInterface } from '../../all-interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-person-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './person-card.component.html',
   styleUrl: './person-card.component.css',
 })

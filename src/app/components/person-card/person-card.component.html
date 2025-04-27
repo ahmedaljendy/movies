@@ -1,39 +1,43 @@
 <!-- <p>person-card works!</p> -->
-<div class="card mb-4 shadow-sm" style="max-width: 540px" id="p-card">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img
-        [src]="'https://image.tmdb.org/t/p/w500' + p?.profile_path"
-        class="img-fluid rounded-start"
-        alt="Profile Picture"
-      />
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ p?.name }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{ p?.original_name }}</h6>
-        <p class="card-text">
-          <small class="text-muted">{{ p?.media_type }}</small>
-        </p>
+<a [routerLink]="['/person', p?.id]" class="text-decoration-none text-dark">
+  <div class="card mb-4 shadow-sm" style="max-width: 540px" id="p-card">
+    <div class="row g-0">
+      <div class="col-md-4">
+        @if(p?.gender === 2){
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + p?.profile_path"
+          class="img-fluid rounded-start"
+          alt="Profile Picture"
+        />
+        }
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ p?.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ p?.original_name }}</h6>
+          <p class="card-text">
+            <small class="text-muted">{{ p?.media_type }}</small>
+          </p>
 
-        <ul class="list-group list-group-flush mt-2">
-          <li class="list-group-item">
-            <strong>Department:</strong> {{ p?.known_for_department }}
-          </li>
-          <li class="list-group-item">
-            <strong>Popularity:</strong> {{ p?.popularity }}
-          </li>
-          <li class="list-group-item">
-            <strong>Gender:</strong>
-            {{
-              p?.gender === 1 ? "Female" : p?.gender === 2 ? "Male" : "Other"
-            }}
-          </li>
-          <li class="list-group-item">
-            <strong>Adult:</strong> {{ p?.adult ? "Yes" : "No" }}
-          </li>
-        </ul>
+          <ul class="list-group list-group-flush mt-2">
+            <li class="list-group-item">
+              <strong>Department:</strong> {{ p?.known_for_department }}
+            </li>
+            <li class="list-group-item">
+              <strong>Popularity:</strong> {{ p?.popularity }}
+            </li>
+            <li class="list-group-item">
+              <strong>Gender:</strong>
+              {{
+                p?.gender === 1 ? "Female" : p?.gender === 2 ? "Male" : "Other"
+              }}
+            </li>
+            <li class="list-group-item">
+              <strong>Adult:</strong> {{ p?.adult ? "Yes" : "No" }}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</a>

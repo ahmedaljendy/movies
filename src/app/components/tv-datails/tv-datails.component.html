@@ -1,0 +1,158 @@
+<!-- <p>tv-datails works!</p> -->
+<div class="container my-5">
+  <!-- Header Info -->
+  <div class="row g-4">
+    <div class="col-md-4 text-center">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500' + show()?.poster_path"
+        class="img-fluid rounded shadow"
+        alt="Show Poster"
+      />
+      <h2 class="mt-3">{{ show()?.name }}</h2>
+      <p class="text-muted">{{ show()?.tagline }}</p>
+      <p class="fw-bold">{{ show()?.type }}</p>
+    </div>
+
+    <div class="col-md-8">
+      <ul class="list-group list-group-flush">
+        @if (show()?.first_air_date) {
+        <li class="list-group-item">
+          <strong>First Air Date:</strong> {{ show()?.first_air_date }}
+        </li>
+        } @if (show()?.last_air_date) {
+        <li class="list-group-item">
+          <strong>Last Air Date:</strong> {{ show()?.last_air_date }}
+        </li>
+        }
+
+        <li class="list-group-item">
+          <strong>Episodes:</strong> {{ show()?.number_of_episodes }} |
+          <strong>Seasons:</strong> {{ show()?.number_of_seasons }}
+        </li>
+
+        @if (show()?.genres) {
+        <li class="list-group-item">
+          <strong>Genres:</strong>
+          @for (genre of show()?.genres; track genre) {
+          <span class="badge bg-secondary me-1">{{ genre.name }}</span>
+          }
+        </li>
+        } @if (show()?.languages) {
+        <li class="list-group-item">
+          <strong>Languages:</strong> {{ show()?.languages?.join(", ") }}
+        </li>
+        } @if (show()?.origin_country) {
+        <li class="list-group-item">
+          <strong>Origin Country:</strong>
+          {{ show()?.origin_country?.join(", ") }}
+        </li>
+        }
+
+        <li class="list-group-item">
+          <strong>Rating:</strong> {{ show()?.vote_average }} ⭐ ({{
+            show()?.vote_count
+          }}
+          votes)
+        </li>
+
+        @if (show()?.homepage) {
+        <li class="list-group-item">
+          <strong>Homepage:</strong>
+          <a [href]="show()?.homepage" target="_blank">{{
+            show()?.homepage
+          }}</a>
+        </li>
+        }
+      </ul>
+
+      <!-- Overview -->
+      <div class="mt-4">
+        <h4>Overview</h4>
+        <p>{{ show()?.overview }}</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5" />
+
+  <!-- Created By -->
+  @if (show()?.created_by) {
+  <h3>Created By</h3>
+  <div class="row g-3">
+    @for (creator of show()?.created_by; track creator) {
+    <div class="col-md-3 text-center">
+      <img
+        [src]="
+          creator.profile_path
+            ? 'https://image.tmdb.org/t/p/w500' + creator.profile_path
+            : 'https://via.placeholder.com/150'
+        "
+        class="img-fluid rounded-circle mb-2"
+        alt="Creator Image"
+      />
+      <h6>{{ creator.name }}</h6>
+    </div>
+    }
+  </div>
+  }
+
+  <hr class="my-5" />
+
+  <!-- Seasons -->
+  @if (show()?.seasons) {
+  <h3>Seasons</h3>
+  <div class="row g-4">
+    @for (season of show()?.seasons; track season) {
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <img
+          [src]="
+            season.poster_path
+              ? 'https://image.tmdb.org/t/p/w500' + season.poster_path
+              : 'https://via.placeholder.com/300x450'
+          "
+          class="card-img-top"
+          alt="Season Poster"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ season.name }}</h5>
+          <p class="card-text">
+            {{ season.overview || "No overview available." }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            Episodes: {{ season.episode_count }} | Air Date:
+            {{ season.air_date }}
+          </small>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  }
+
+  <hr class="my-5" />
+
+  <!-- Networks -->
+  @if (show()?.networks) {
+  <h3>Networks</h3>
+  <div class="d-flex flex-wrap gap-3 mt-3">
+    @for (network of show()?.networks; track network) {
+    <div class="text-center">
+      <img
+        [src]="
+          network.logo_path
+            ? 'https://image.tmdb.org/t/p/w500' + network.logo_path
+            : 'https://via.placeholder.com/150x50'
+        "
+        class="img-fluid mb-2"
+        style="max-width: 150px"
+        alt="Network Logo"
+      />
+      <div>{{ network.name }}</div>
+    </div>
+    }
+  </div>
+  }
+</div>

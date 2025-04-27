@@ -1,0 +1,68 @@
+<!-- <p>person-datails works!</p> -->
+<div class="container my-5">
+  <div class="row g-4">
+    <div class="col-md-4 text-center">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500' + person()?.profile_path"
+        class="img-fluid rounded shadow"
+        alt="Profile Picture"
+      />
+      <h2 class="mt-3">{{ person()?.name }}</h2>
+      <p class="text-muted">{{ person()?.known_for_department }}</p>
+    </div>
+
+    <div class="col-md-8">
+      <ul class="list-group list-group-flush">
+        @if (person()?.birthday) {
+        <li class="list-group-item">
+          <strong>Birthday:</strong> {{ person()?.birthday }}
+        </li>
+        } @if (person()?.place_of_birth) {
+        <li class="list-group-item">
+          <strong>Place of Birth:</strong> {{ person()?.place_of_birth }}
+        </li>
+        } @if (person()?.gender) {
+        <li class="list-group-item">
+          <strong>Gender:</strong>
+          {{ person()?.gender === 1 ? "Female" : "Male" }}
+        </li>
+        } @if (person()?.popularity) {
+        <li class="list-group-item">
+          <strong>Popularity:</strong> {{ person()?.popularity }}
+        </li>
+        } @if (person()?.homepage) {
+        <li class="list-group-item">
+          <strong>Homepage:</strong>
+          <a [href]="person()?.homepage" target="_blank">{{
+            person()?.homepage
+          }}</a>
+        </li>
+        } @if (person()?.imdb_id) {
+        <li class="list-group-item">
+          <strong>IMDB:</strong>
+          <a
+            [href]="'https://www.imdb.com/name/' + person()?.imdb_id"
+            target="_blank"
+          >
+            View Profile
+          </a>
+        </li>
+        } @if (person()?.also_known_as) {
+        <li class="list-group-item">
+          <strong>Also Known As:</strong>
+          <ul class="list-unstyled mb-0 mt-1">
+            @for (aka of person()?.also_known_as; track aka) {
+            <li>- {{ aka }}</li>
+            }
+          </ul>
+        </li>
+        }
+      </ul>
+
+      <div class="mt-4">
+        <h4>Biography</h4>
+        <p>{{ person()?.biography }}</p>
+      </div>
+    </div>
+  </div>
+</div>

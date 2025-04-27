@@ -1,49 +1,52 @@
 <!-- <p>tv-card works!</p> -->
-<div class="card mb-4 shadow-sm" style="max-width: 540px" id="t-card">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img
-        [src]="'https://image.tmdb.org/t/p/w500' + t?.poster_path"
-        class="img-fluid rounded-start"
-        alt="TV Show Poster"
-      />
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ t?.name }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{ t?.original_name }}</h6>
-        <p class="card-text">
-          <small class="text-muted">{{ t?.media_type }}</small>
-        </p>
-        <p class="card-text">{{ t?.overview }}</p>
+<a [routerLink]="['/tv', t?.id]" class="text-decoration-none text-dark">
+  <div class="card mb-4 shadow-sm" style="max-width: 540px" id="t-card">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + t?.poster_path"
+          class="img-fluid rounded-start"
+          alt="TV Show Poster"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ t?.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ t?.original_name }}</h6>
+          <p class="card-text">
+            <small class="text-muted">{{ t?.media_type }}</small>
+          </p>
+          <p class="card-text">{{ t?.overview }}</p>
 
-        <ul class="list-group list-group-flush mt-2">
-          <li class="list-group-item">
-            <strong>First Air Date:</strong> {{ t?.first_air_date }}
-          </li>
-          <li class="list-group-item">
-            <strong>Language:</strong> {{ t?.original_language }}
-          </li>
-          <li class="list-group-item">
-            <strong>Popularity:</strong> {{ t?.popularity }}
-          </li>
-          <li class="list-group-item">
-            <strong>Vote Average:</strong> {{ t?.vote_average }} ({{
-              t?.vote_count
-            }}
-            votes)
-          </li>
-          <li class="list-group-item">
-            <strong>Genres:</strong> {{ t?.genre_ids?.join(", ") }}
-          </li>
-          <li class="list-group-item">
-            <strong>Origin Country:</strong> {{ t?.origin_country?.join(", ") }}
-          </li>
-          <li class="list-group-item">
-            <strong>Adult:</strong> {{ t?.adult ? "Yes" : "No" }}
-          </li>
-        </ul>
+          <ul class="list-group list-group-flush mt-2">
+            <li class="list-group-item">
+              <strong>First Air Date:</strong> {{ t?.first_air_date }}
+            </li>
+            <li class="list-group-item">
+              <strong>Language:</strong> {{ t?.original_language }}
+            </li>
+            <li class="list-group-item">
+              <strong>Popularity:</strong> {{ t?.popularity }}
+            </li>
+            <li class="list-group-item">
+              <strong>Vote Average:</strong> {{ t?.vote_average }} ({{
+                t?.vote_count
+              }}
+              votes)
+            </li>
+            <li class="list-group-item">
+              <strong>Genres:</strong> {{ t?.genre_ids?.join(", ") }}
+            </li>
+            <li class="list-group-item">
+              <strong>Origin Country:</strong>
+              {{ t?.origin_country?.join(", ") }}
+            </li>
+            <li class="list-group-item">
+              <strong>Adult:</strong> {{ t?.adult ? "Yes" : "No" }}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</a>
